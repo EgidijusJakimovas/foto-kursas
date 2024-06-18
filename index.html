@@ -1,326 +1,369 @@
 <!DOCTYPE html>
 <html lang="lt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fotografijos Kursas</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-        }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      .header {
+        text-align: center;
+      }
+      .course-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .course-header img {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        margin-left: 150px;
+      }
+      .course-info {
+        margin-top: 20px;
+        flex: 1 1 300px;
+      }
+      .prices {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .price {
+        color: red;
+        font-size: 24px;
+        margin-left: 10px;
+      }
+      .old-price {
+        text-decoration: line-through;
+        color: grey;
+        font-size: 24px;
+        margin-left: 10px;
+      }
+      .description {
+        margin-top: 20px;
+      }
+      .highlight {
+        color: red;
+      }
+      .purchase-section {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .purchase-section label {
+        margin-left: 10px;
+      }
+      .purchase-section select {
+        padding: 10px;
+        margin-left: 10px;
+      }
+      .purchase-section button {
+        padding: 10px;
+        margin-left: 10px;
+      }
+      .note {
+        margin-top: 20px;
+        border-top: 1px solid #000;
+        padding-top: 20px;
+      }
+      .schedule {
+        margin-top: 20px;
+      }
+      .schedule table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .schedule th,
+      .schedule td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .schedule th {
+        background-color: #f2f2f2;
+      }
+      @media (max-width: 768px) {
         .course-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .course-header img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin-left: 150px;
+          flex-direction: column;
+          text-align: center;
         }
         .course-info {
-            margin-top: 20px;
-            flex: 1 1 300px;
-        }
-        .prices {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .price {
-            color: red;
-            font-size: 24px;
-            margin-left: 10px;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: grey;
-            font-size: 24px;
-            margin-left: 10px;
-        }
-        .description {
-            margin-top: 20px;
-        }
-        .highlight {
-            color: red;
+          margin-top: 10px;
         }
         .purchase-section {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
+          flex-direction: column;
+          align-items: flex-start;
         }
-        .purchase-section label {
-            margin-left: 10px;
-        }
-        .purchase-section select {
-            padding: 10px;
-            margin-left: 10px;
-        }
+        .purchase-section label,
+        .purchase-section select,
         .purchase-section button {
-            padding: 10px;
-            margin-left: 10px;
+          margin: 5px 0;
         }
-        .note {
-            margin-top: 20px;
-            border-top: 1px solid #000;
-            padding-top: 20px;
+      }
+      @media (max-width: 480px) {
+        .price {
+          font-size: 20px;
         }
-        .schedule {
-            margin-top: 20px;
+        .old-price {
+          font-size: 16px;
         }
-        .schedule table {
-            width: 100%;
-            border-collapse: collapse;
+        .purchase-section select,
+        .purchase-section button {
+          width: 100%;
         }
-        .schedule th, .schedule td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+        .schedule th,
+        .schedule td {
+          font-size: 14px;
+          padding: 6px;
         }
-        .schedule th {
-            background-color: #f2f2f2;
-        }
-        @media (max-width: 768px) {
-            .course-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .course-info {
-                margin-top: 10px;
-            }
-            .purchase-section {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .purchase-section label, 
-            .purchase-section select, 
-            .purchase-section button {
-                margin: 5px 0;
-            }
-        }
-        @media (max-width: 480px) {
-            .price {
-                font-size: 20px;
-            }
-            .old-price {
-                font-size: 16px;
-            }
-            .purchase-section select,
-            .purchase-section button {
-                width: 100%;
-            }
-            .schedule th, .schedule td {
-                font-size: 14px;
-                padding: 6px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <h1>Būsiu fotografas (11 – ka savaičių mokymų)</h1>
+      <div class="header">
+        <h1>Būsiu fotografas (11 – ka savaičių mokymų)</h1>
+      </div>
+      <div class="course-header">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5824673c2e69cfc8ac1e3cd3/1576771376681-ZOZU73I52EJ7XXXZCAEM/montage+of+all+our+online+courses"
+          alt="Fotografijos Kursas" />
+        <div class="course-info">
+          <div class="prices">
+            <p class="old-price">549.00€</p>
+            <p class="price">489.00€</p>
+          </div>
+          <div class="purchase-section">
+            <label for="city">Pasirinkite miestą:</label>
+            <select id="city">
+              <option value="kaunas">Kaunas</option>
+              <option value="vilnius">Vilnius</option>
+            </select>
+            <button id="purchaseButton">Pirkti</button>
+          </div>
         </div>
-        <div class="course-header">
-            <img src="https://images.squarespace-cdn.com/content/v1/5824673c2e69cfc8ac1e3cd3/1576771376681-ZOZU73I52EJ7XXXZCAEM/montage+of+all+our+online+courses" alt="Fotografijos Kursas">
-            <div class="course-info">
-                <div class="prices">
-                    <p class="old-price">549.00€</p>
-                    <p class="price">489.00€</p>
-                </div>
-                <div class="purchase-section">
-                    <form id="purchaseForm" action="redirect.html" method="post">
-                        <label for="city">Pasirinkite miestą:</label>
-                        <select id="city" name="city">
-                            <option value="kaunas">Kaunas</option>
-                            <option value="vilnius">Vilnius</option>
-                        </select>
-                        <button type="submit">Pirkti</button>
-                    </form>
-            </div>
+      </div>
+      <div class="description">
+        <h2>Aprašymas</h2>
+        <p class="highlight">
+          Fotografijos mokymų sesija vyksta 4 kartus per metus, t.y. naujos
+          grupės renkomos: Rugsėjo mėn., Lapkričio mėn., Vasario mėn. Balandžio
+          mėn.
+        </p>
+        <p>
+          Fotografijos seminarų sesiją sudaro 11-ka seminarų, t.y. 11-ka mokymų
+          savaičių, naujos grupės formuojamos 3 – is kartus per metus
+          (išimtiniais atvejais būna formuojama 4-ta grupė)
+        </p>
+        <p>
+          Tai kursas, kurio metu per 11-ka savaičių (kontaktinių mokymų)
+          laikotarpi tapsite pilnaverčiais fotografais pasiruošusiais
+          savarankiškai dirbti, Jus dominuojančiose fotografijos sferose.
+          Visiškai nesvarbu kas Jus domina: ar buitinis vaizdas ar šeimos
+          fotografavimas kelionėse, ar komerciniai projektai, fotosesijos, mada
+          – skirtingi lektoriai Jums skirs individualų dėmesį siekdami, kad
+          baigę kursą savo nuotraukomis sudomintumėte ne tik savo mamą ar tėtį,
+          bet ir šimtus žmonių socialiniuose tinklalapiuose bei, kad padėtų Jums
+          apsispręsti, kuri fotografijos sritis jums tinkama bei užves ant kelio
+          nuo ko pradėti dirbti šį darbą . Tai didžiausia investicija į save,
+          nes šio kurso metu gausite tonas itin naudingos informacijos, kurią su
+          savimi nešiositės visą likusi gyvenimą. Nesvarbu kokį fotoaparatą
+          turite, po šių 11-kos savaičių net ir su telefoną sugebėsite padaryti
+          aukšto lygio fotografijas.
+        </p>
+        <p class="highlight">
+          Seminarų metu reikia turėti savo naudojamą fototechniką: veidrodinį
+          arba sisteminį fotoaparatą (jei neturite fototechnikos, patarsime kur
+          galima išsinuomoti visam mokymų laikotarpiui už prieinamą kainą). Taip
+          pat reikia turėti savo nešiojamą kompiuterį, su jame veikiančiomis
+          Adobe Photoshop ir Adobe Lightroom Classic programomis.
+        </p>
+        <div class="note">
+          <p>Seminarų sesijos lektoriai:</p>
+          <p>
+            Šio kurso metu užsiėmimus ves 5-ki skirtingi lektoriai,
+            profesionalūs fotografai savo srities specialistai
+          </p>
         </div>
-        <div class="description">
-            <h2>Aprašymas</h2>
-            <p class="highlight">Fotografijos mokymų sesija vyksta 4 kartus per metus, t.y. naujos grupės renkomos: Rugsėjo mėn., Lapkričio mėn., Vasario mėn. Balandžio mėn.</p>
-            <p>Fotografijos seminarų sesiją sudaro 11-ka seminarų, t.y. 11-ka mokymų savaičių, naujos grupės formuojamos 3 – is kartus per metus (išimtiniais atvejais būna formuojama 4-ta grupė)</p>
-            <p>Tai kursas, kurio metu per 11-ka savaičių (kontaktinių mokymų) laikotarpi tapsite pilnaverčiais fotografais pasiruošusiais savarankiškai dirbti, Jus dominuojančiose fotografijos sferose. Visiškai nesvarbu kas Jus domina: ar buitinis vaizdas ar šeimos fotografavimas kelionėse, ar komerciniai projektai, fotosesijos, mada – skirtingi lektoriai Jums skirs individualų dėmesį siekdami, kad baigę kursą savo nuotraukomis sudomintumėte ne tik savo mamą ar tėtį, bet ir šimtus žmonių socialiniuose tinklalapiuose bei, kad padėtų Jums apsispręsti, kuri fotografijos sritis jums tinkama bei užves ant kelio nuo ko pradėti dirbti šį darbą . Tai didžiausia investicija į save, nes šio kurso metu gausite tonas itin naudingos informacijos, kurią su savimi nešiositės visą likusi gyvenimą. Nesvarbu kokį fotoaparatą turite, po šių 11-kos savaičių net ir su telefoną sugebėsite padaryti aukšto lygio fotografijas.</p>
-            <p class="highlight">Seminarų metu reikia turėti savo naudojamą fototechniką: veidrodinį arba sisteminį fotoaparatą (jei neturite fototechnikos, patarsime kur galima išsinuomoti visam mokymų laikotarpiui už prieinamą kainą). Taip pat reikia turėti savo nešiojamą kompiuterį, su jame veikiančiomis Adobe Photoshop ir Adobe Lightroom Classic programomis.</p>
-            <div class="note">
-                <p>Seminarų sesijos lektoriai:</p>
-                <p>Šio kurso metu užsiėmimus ves 5-ki skirtingi lektoriai, profesionalūs fotografai savo srities specialistai</p>
-            </div>
-        </div>
-        <div class="schedule">
-            <h2>Seminarų grafikas</h2>
-            <p>Kaunas:</p>
-            <p><strong>Kaunas, mokymų sesijos pradžia:</strong> <span style="color: red;">2024-09-27</span></p>
-            <table>
-                <tr>
-                    <th>Data</th>
-                    <th>Sav.diena</th>
-                    <th>Laikas</th>
-                    <th>Ką turėti?</th>
-                </tr>
-                <tr>
-                    <td>2024-09-27</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką</td>
-                </tr>
-                <tr>
-                    <td>2024-10-04</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką</td>
-                </tr>
-                <tr>
-                    <td>2024-10-12</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Nešiojamą kompiuterį su Adobe Lightroom Classic</td>
-                </tr>
-                <tr>
-                    <td>2024-10-19</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, seminaras vyks Vilniuje, Brazzi erdvėje</td>
-                </tr>
-                <tr>
-                    <td>2024-10-25</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
-                </tr>
-                <tr>
-                    <td>2024-11-08</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką</td>
-                </tr>
-                <tr>
-                    <td>2024-11-16</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, trikojį</td>
-                </tr>
-                <tr>
-                    <td>2024-11-22</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
-                </tr>
-                <tr>
-                    <td>2024-11-29</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Priemones užrašams</td>
-                </tr>
-                <tr>
-                    <td>2024-12-06</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, būti pasiruošus projektiniam darbui</td>
-                </tr>
-                <tr>
-                    <td>2024-12-13</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, baigiamąjį darbą</td>
-                </tr>
-            </table>
-        </div>
-        <div class="schedule">
-            <p>Vilnius:</p>
-            <p><strong>Kaunas, mokymų sesijos pradžia:</strong> <span style="color: red;">2025-02-27</span></p>
-            <table>
-                <tr>
-                    <th>Data</th>
-                    <th>Sav.diena</th>
-                    <th>Laikas</th>
-                    <th>Ką turėti?</th>
-                </tr>
-                <tr>
-                    <td>2025-02-27</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką</td>
-                </tr>
-                <tr>
-                    <td>2025-03-04</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką</td>
-                </tr>
-                <tr>
-                    <td>2025-03-12</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Nešiojamą kompiuterį su Adobe Lightroom Classic</td>
-                </tr>
-                <tr>
-                    <td>2025-03-19</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, seminaras vyks Vilniuje, Brazzi erdvėje</td>
-                </tr>
-                <tr>
-                    <td>2025-03-25</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
-                </tr>
-                <tr>
-                    <td>2025-04-08</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką</td>
-                </tr>
-                <tr>
-                    <td>2025-04-16</td>
-                    <td>Antradienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, trikojį</td>
-                </tr>
-                <tr>
-                    <td>2025-04-22</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
-                </tr>
-                <tr>
-                    <td>2025-04-29</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Priemones užrašams</td>
-                </tr>
-                <tr>
-                    <td>2025-05-06</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, būti pasiruošus projektiniam darbui</td>
-                </tr>
-                <tr>
-                    <td>2025-05-13</td>
-                    <td>Pirmadienis</td>
-                    <td>18:00</td>
-                    <td>Fototechniką, baigiamąjį darbą</td>
-                </tr>
-            </table>
-        </div>
+      </div>
+      <div class="schedule">
+        <h2>Seminarų grafikas</h2>
+        <p>Kaunas:</p>
+        <p>
+          <strong>Kaunas, mokymų sesijos pradžia:</strong>
+          <span style="color: red">2024-09-27</span>
+        </p>
+        <table>
+          <tr>
+            <th>Data</th>
+            <th>Sav.diena</th>
+            <th>Laikas</th>
+            <th>Ką turėti?</th>
+          </tr>
+          <tr>
+            <td>2024-09-27</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Fototechniką</td>
+          </tr>
+          <tr>
+            <td>2024-10-04</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką</td>
+          </tr>
+          <tr>
+            <td>2024-10-12</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Nešiojamą kompiuterį su Adobe Lightroom Classic</td>
+          </tr>
+          <tr>
+            <td>2024-10-19</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, seminaras vyks Vilniuje, Brazzi erdvėje</td>
+          </tr>
+          <tr>
+            <td>2024-10-25</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
+          </tr>
+          <tr>
+            <td>2024-11-08</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką</td>
+          </tr>
+          <tr>
+            <td>2024-11-16</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, trikojį</td>
+          </tr>
+          <tr>
+            <td>2024-11-22</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
+          </tr>
+          <tr>
+            <td>2024-11-29</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Priemones užrašams</td>
+          </tr>
+          <tr>
+            <td>2024-12-06</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, būti pasiruošus projektiniam darbui</td>
+          </tr>
+          <tr>
+            <td>2024-12-13</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, baigiamąjį darbą</td>
+          </tr>
+        </table>
+      </div>
+      <div class="schedule">
+        <p>Vilnius:</p>
+        <p>
+          <strong>Kaunas, mokymų sesijos pradžia:</strong>
+          <span style="color: red">2025-02-27</span>
+        </p>
+        <table>
+          <tr>
+            <th>Data</th>
+            <th>Sav.diena</th>
+            <th>Laikas</th>
+            <th>Ką turėti?</th>
+          </tr>
+          <tr>
+            <td>2025-02-27</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Fototechniką</td>
+          </tr>
+          <tr>
+            <td>2025-03-04</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką</td>
+          </tr>
+          <tr>
+            <td>2025-03-12</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Nešiojamą kompiuterį su Adobe Lightroom Classic</td>
+          </tr>
+          <tr>
+            <td>2025-03-19</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, seminaras vyks Vilniuje, Brazzi erdvėje</td>
+          </tr>
+          <tr>
+            <td>2025-03-25</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
+          </tr>
+          <tr>
+            <td>2025-04-08</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką</td>
+          </tr>
+          <tr>
+            <td>2025-04-16</td>
+            <td>Antradienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, trikojį</td>
+          </tr>
+          <tr>
+            <td>2025-04-22</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Nešiojamą kompiuterį su Adobe Photoshop</td>
+          </tr>
+          <tr>
+            <td>2025-04-29</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Priemones užrašams</td>
+          </tr>
+          <tr>
+            <td>2025-05-06</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, būti pasiruošus projektiniam darbui</td>
+          </tr>
+          <tr>
+            <td>2025-05-13</td>
+            <td>Pirmadienis</td>
+            <td>18:00</td>
+            <td>Fototechniką, baigiamąjį darbą</td>
+          </tr>
+        </table>
+      </div>
     </div>
     <script>
-        document.getElementById('purchaseButton').addEventListener('click', function() {
-            window.location.href = 'redirect.html';
+      document
+        .getElementById("purchaseButton")
+        .addEventListener("click", function () {
+          window.location.href = "redirect.html";
         });
     </script>
-</body>
+  </body>
 </html>
