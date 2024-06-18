@@ -138,13 +138,14 @@
                     <p class="price">489.00€</p>
                 </div>
                 <div class="purchase-section">
-                    <label for="city">Pasirinkite miestą:</label>
-                    <select id="city">
-                        <option value="kaunas">Kaunas</option>
-                        <option value="vilnius">Vilnius</option>
-                    </select>
-                    <button id="purchaseButton">Pirkti</button>
-                </div>
+                    <form id="purchaseForm" action="redirect.html" method="post">
+                        <label for="city">Pasirinkite miestą:</label>
+                        <select id="city" name="city">
+                            <option value="kaunas">Kaunas</option>
+                            <option value="vilnius">Vilnius</option>
+                        </select>
+                        <button type="submit">Pirkti</button>
+                    </form>
             </div>
         </div>
         <div class="description">
