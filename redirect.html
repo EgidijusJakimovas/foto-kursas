@@ -15,7 +15,7 @@
       body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
-        background-color: #f5f5f5;
+        background-color: antiquewhite;
         margin: 0;
         padding: 20px;
       }
@@ -139,34 +139,6 @@
       <div class="payment-details">
         <h2>Apmokėjimas</h2>
         <div class="woocommerce">
-          <div class="woocommerce-notices-wrapper"></div>
-          <div class="woocommerce-form-coupon-toggle">
-            <form
-              class="checkout_coupon woocommerce-form-coupon"
-              method="post"
-              style="display: none">
-              <p class="form-row form-row-first">
-                <input
-                  type="text"
-                  name="coupon_code"
-                  class="input-text"
-                  placeholder="Nuolaidos kodas"
-                  id="coupon_code"
-                  value="" />
-              </p>
-              <p class="form-row form-row-last">
-                <button
-                  type="submit"
-                  class="button"
-                  name="apply_coupon"
-                  value="Pritaikyti">
-                  Pritaikyti
-                </button>
-              </p>
-              <div class="clear"></div>
-            </form>
-          </div>
-          <div class="woocommerce-notices-wrapper"></div>
           <form
             name="checkout"
             method="post"
@@ -218,9 +190,8 @@
                         class="woocommerce-terms-and-conditions-checkbox-text"
                         >Aš perskaičiau ir sutinku su puslapio
                         <a
-                          href="rules.html"
+                          href="payserapolicy.html"
                           class="woocommerce-terms-and-conditions-link"
-                          target="_blank"
                           >sąlygomis ir taisyklėmis</a
                         ><abbr class="required" title="privaloma">*</abbr></span
                       >
@@ -252,5 +223,17 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var form = document.querySelector("form[name='checkout']");
+        var checkbox = document.getElementById("terms");
+        form.addEventListener("submit", function (event) {
+          if (!checkbox.checked) {
+            alert("Prašome sutikti su sąlygomis ir taisyklėmis.");
+            event.preventDefault();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
