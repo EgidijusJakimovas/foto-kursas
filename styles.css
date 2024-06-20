@@ -1161,7 +1161,6 @@ p.demo_store a {
 .woocommerce td.product-name .wc-item-meta dt,
 .woocommerce td.product-name dl.variation .wc-item-meta-label,
 .woocommerce td.product-name dl.variation dt {
-  float: left;
   clear: both;
   margin-right: 0.25em;
   display: inline-block;
@@ -1241,7 +1240,6 @@ p.demo_store a {
 .woocommerce ul.product_list_widget li dl dd,
 .woocommerce ul.product_list_widget li dl dt {
   display: inline-block;
-  float: left;
   margin-bottom: 1em;
 }
 .woocommerce ul.cart_list li dl dt,
@@ -1510,7 +1508,6 @@ p.demo_store a {
   .woocommerce-customer-details
   .woocommerce-customer-details--phone::before {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
@@ -1527,7 +1524,6 @@ p.demo_store a {
   .woocommerce-customer-details
   .woocommerce-customer-details--email::before {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
@@ -1581,7 +1577,6 @@ p.demo_store a {
   .woocommerce-widget-layered-nav-list__item--chosen
   a::before {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
@@ -1613,7 +1608,6 @@ p.demo_store a {
 }
 .woocommerce .widget_layered_nav_filters ul li a::before {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
@@ -1711,7 +1705,6 @@ p.demo_store a {
 }
 .woocommerce .widget_rating_filter ul li.chosen a::before {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
@@ -1852,7 +1845,6 @@ p.demo_store a {
 }
 .woocommerce-account ul.digital-downloads li::before {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
@@ -1939,7 +1931,6 @@ p.demo_store a {
 .woocommerce-cart .cart-collaterals .shipping-calculator-button::after,
 .woocommerce-checkout .cart-collaterals .shipping-calculator-button::after {
   font-family: WooCommerce;
-  speak: never;
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
