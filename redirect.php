@@ -16,8 +16,8 @@ try {
         $self_url = 'https://foto-kursas-930ec9144443.herokuapp.com/';
 
         WebToPay::redirectToPayment([
-            'projectid' => 244531,
-            'sign_password' => 'Labaslabas123*',
+            'projectid' => 244570,
+            'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
             'orderid' => 'max-max-' . rand(1000000, 9999999),
             'p_email' => $elpastas,
             'p_firstname' => $vardas,
