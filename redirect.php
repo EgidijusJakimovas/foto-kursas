@@ -4,7 +4,7 @@ require_once('WebToPay.php');
 
 function getSelfUrl(): string
 {
-    return 'http://127.0.0.1:5500';
+    return 'https://foto-kursas-930ec9144443.herokuapp.com/';
 }
 
 try {
@@ -12,8 +12,6 @@ try {
         $vardas = $_POST['vardas'] ?? '';
         $pavarde = $_POST['pavarde'] ?? '';
         $elpastas = $_POST['elpastas'] ?? '';
-
-        $self_url = 'https://foto-kursas-930ec9144443.herokuapp.com/';
 
         WebToPay::redirectToPayment([
             'projectid' => 244570,
