@@ -28,7 +28,7 @@ try {
             'accepturl' => getSelfUrl() . '/accept.php',
             'cancelurl' => getSelfUrl() . '/cancel.php',
             'callbackurl' => getSelfUrl() . '/callback.php',
-            'test' => 1,
+            'test' => 0,
         ]);
     } else {
         echo 'Invalid request method.';
