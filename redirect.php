@@ -5,7 +5,7 @@ require_once('WebToPay.php');
 // Define your static URL
 function getSelfUrl(): string
 {
-    return 'https://foto-kursas-930ec9144443.herokuapp.com';
+    return 'https://foto-kursas-930ec9144443.herokuapp.com/';
 }
 
 try {
