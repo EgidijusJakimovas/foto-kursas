@@ -21,7 +21,7 @@ try {
             'p_email' => $elpastas,
             'p_firstname' => $vardas,
             'p_lastname' => $pavarde,
-            'amount' => 489,
+            'amount' => 48900,
             'currency' => 'EUR',
             'country' => 'LT',
             'accepturl' => getSelfUrl() . '/accept.php',
