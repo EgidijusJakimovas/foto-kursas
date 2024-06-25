@@ -2,18 +2,16 @@
 
 require_once('WebToPay.php');
 
-// Define your static URL
 function getSelfUrl(): string
 {
     return 'https://foto-kursas-930ec9144443.herokuapp.com';
 }
 
-// Generate a unique auto-incrementing order ID
 function generateOrderId(): string
 {
-    static $lastOrderId = 1000000; // Initial value for the order ID
+    static $lastOrderId = 0;
     $lastOrderId++;
-    return 'max-max-' . $lastOrderId;
+    return str_pad($lastOrderId, 6, '0', STR_PAD_LEFT);
 }
 
 try {
