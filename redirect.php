@@ -3,6 +3,9 @@ require_once 'WebToPay.php';
 require_once 'const.php';
 
 try {
+    // Set default timezone to UTC (adjust as per your server's timezone requirement)
+    date_default_timezone_set('UTC');
+
     // Database info
     $host       = 'b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
     $user       = 'vo3l7cqkori4bdkn';
@@ -63,7 +66,7 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',$paymentStatus);
     $statement->bindValue(':paid_sum',      0); // Initial value, since the payment is not done yet
-    $statement->bindValue(':data',          date("Y-m-d H:i:s")); // Assuming current timestamp
+    $statement->bindValue(':data',          date("Y-m-d H:i:s"));
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
