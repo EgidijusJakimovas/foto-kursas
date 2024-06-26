@@ -29,7 +29,7 @@ try {
             'p_email' => $elpastas,
             'p_firstname' => $vardas,
             'p_lastname' => $pavarde,
-            'amount' => 48900,
+            'amount' => 100,
             'currency' => 'EUR',
             'country' => 'LT',
             'accepturl' => getSelfUrl() . '/accept.php',
