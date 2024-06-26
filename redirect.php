@@ -93,7 +93,8 @@ try {
         'projectid'     => 244570,
         'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
         'orderid'       => $orderID,
-        'amount'       => $paidSum * 100, // returning cents (for paysera) from euros (from DB)
+        // 'amount'       => $paidSum * 100, // returning cents (for paysera) from euros (from DB)
+        'amount'       => 100,
         'currency'      => 'EUR',
         'country'       => 'LT',
         'p_firstname'   => $name,
