@@ -3,6 +3,9 @@ require_once 'WebToPay.php';
 require_once 'const.php';
 
 try {
+    // Set the PHP timezone to match your local timezone
+    date_default_timezone_set('Europe/Vilnius'); // Adjust to your timezone
+
     // Database info
     $host       = 'b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
     $user       = 'vo3l7cqkori4bdkn';
