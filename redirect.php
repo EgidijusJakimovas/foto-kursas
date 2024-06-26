@@ -60,6 +60,7 @@ try {
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
+    $paidSum        = $_POST['paid_sum'];
     
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
@@ -67,8 +68,8 @@ try {
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
     $statement->bindValue(':phone',         $phone);
-    $statement->bindValue(':payment_status',$paymentStatus);
-    $statement->bindValue(':paid_sum',      0); // Initial value, since the payment is not done yet
+    $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
+    $statement->bindValue(':paid_sum',      $paidSum);
     
     // Adjust timestamp manually if necessary
     $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
