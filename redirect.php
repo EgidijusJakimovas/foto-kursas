@@ -3,9 +3,6 @@ require_once 'WebToPay.php';
 require_once 'const.php';
 
 try {
-    // Set default timezone to UTC (adjust as per your server's timezone requirement)
-    date_default_timezone_set('UTC');
-
     // Database info
     $host       = 'b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
     $user       = 'vo3l7cqkori4bdkn';
@@ -32,8 +29,11 @@ try {
     // Connect to MySQL and instantiate our PDO object.
     $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
     
+    // Set MySQL time zone
+    $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
+    
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table (`$orderID`, `$name`, `$surname`, `$email`, `$phone`, `$paymentStatus`, `$paidSum`, `$data`) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, NOW())";
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
@@ -66,9 +66,16 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',$paymentStatus);
     $statement->bindValue(':paid_sum',      0); // Initial value, since the payment is not done yet
+    $statement->bindValue(':data',          date("Y-m-d H:i:s"));
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
+
+    // Because PDOStatement::execute returns a TRUE or FALSE value,
+    // we can easily check to see if our insert was successful.
+    // if($inserted){
+    // echo 'Row inserted!<br>';
+    // }
 
     // PAYSERA PAYMENT
     function getSelfUrl(): string {
@@ -79,7 +86,8 @@ try {
         'projectid'     => 244570,
         'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
         'orderid'       => $orderID,
-        'amount'        => 100, // Example amount
+        // 'amount'       => $paidSum * 100, // returning cents (for paysera) from euros (from DB)
+        'amount'        => 100,
         'currency'      => 'EUR',
         'country'       => 'LT',
         'p_firstname'   => $name,
@@ -93,6 +101,7 @@ try {
     ]);
 } catch (Exception $exception) {
     echo "SQL exception on 'go.php' file. Enable error-reporting for more info.";
+    //TODO: HIDE IT IN PRODUCTION
     echo get_class($exception) . ':' . $exception->getMessage();
 }
 ?>
