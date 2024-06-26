@@ -3,8 +3,8 @@ require_once 'WebToPay.php';
 require_once 'const.php';
 
 try {
-    // Set the PHP timezone to match your local timezone
-    date_default_timezone_set('Europe/Vilnius'); // Adjust to your timezone
+    // Set PHP timezone to match your local timezone
+    date_default_timezone_set('Europe/Vilnius'); // Adjust to your local timezone
 
     // Database info
     $host       = 'b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
@@ -32,7 +32,7 @@ try {
     // Connect to MySQL and instantiate our PDO object.
     $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
     
-    // Set MySQL time zone
+    // Set MySQL session time zone
     $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
     
     // Create our INSERT SQL query.
