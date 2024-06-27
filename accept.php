@@ -31,6 +31,9 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <h1>Payment Successful</h1>
+        </div>
         <div class="info">
             <p>Thank you for your purchase! We have received your order and are processing it. Please check your email for payment confirmation and further instructions. You will be redirected to our homepage in 10 seconds.</p>
         </div>
