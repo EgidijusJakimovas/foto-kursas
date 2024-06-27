@@ -19,7 +19,7 @@
 	define('DB_TABLE_ORDERS_COLUMN_PHONE', 			'phone');
     define('DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS', 'payment_status');
     define('DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM', 	'paid_sum');
-    define('DB_TABLE_ORDERS_COLUMN_TIMESTAMP', 		'data');
+    define('DB_TABLE_ORDERS_COLUMN_DATA', 		    'data');
 
     // other info
     define('COURSE_PRICE', 	100); // money in cents becouse of paysera
