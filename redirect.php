@@ -1,6 +1,9 @@
 <?php
 
-require_once 'WebToPay.php';
+// FOR PAYSERA
+require_once('WebToPay.php');
+
+// FOR CREDENTIALS
 require_once 'const.php';
 
 try {
