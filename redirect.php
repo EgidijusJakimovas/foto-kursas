@@ -76,7 +76,7 @@ try {
     $statement->bindValue(':data',          $data);
     
     // Adjust timestamp manually if necessary
-    $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
+    $data = date("Y-m-d H:i:s", strtotime("+3 hours"));
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
