@@ -22,6 +22,6 @@
     define('DB_TABLE_ORDERS_COLUMN_TIMESTAMP', 		'data');
 
     // other info
-    define('COURSE_MONEY', 	100); // money in cents becouse of paysera
+    define('COURSE_PRICE', 	100); // money in cents becouse of paysera
 
 ?>

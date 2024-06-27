@@ -7,29 +7,24 @@ try {
     date_default_timezone_set('Europe/Vilnius'); // Adjust to your local timezone
 
     // Database info
-
-    //TODO: ta pati padaryti kaip 29 eiluteje
-    $host       = 'b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
-    $user       = 'vo3l7cqkori4bdkn';
+    $host       = DB_HOST;
+    $user       = DB_USERNAME;
     $pass       = DB_PASSWORD;
-    $database   = 'n9teib9it8m8u2z3';
+    $database   = DB_NAME;
     
     // Database table info
-
-    //TODO: ta pati padaryti kaip 32 eiluteje
-
     $table          = DB_TABLE_ORDERS;
-    $orderID        = 'id';
-    $name           = 'name';
-    $surname        = 'surname';
-    $email          = 'email';
-    $phone          = 'phone';
-    $paymentStatus  = 'payment_status';
-    $paidSum        = 'paid_sum';
-    $data           = 'data';
+    $orderID        = DB_TABLE_ORDERS_COLUMN_ID;
+    $name           = DB_TABLE_ORDERS_COLUMN_NAME;
+    $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
+    $email          = DB_TABLE_ORDERS_COLUMN_EMAIL;
+    $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
+    $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
+    $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
+    $data           = DB_TABLE_ORDERS_COLUMN_TIMESTAMP;
 
     // Other info
-    $money          = COURSE_MONEY;
+    $money          = COURSE_PRICE;
 
     // Custom PDO options.
     $options = array(
@@ -68,7 +63,7 @@ try {
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSum        = COURSE_MONEY / 100; // becouse paysera is counting in cents, but we have double in DB
+    $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
     
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
@@ -78,10 +73,10 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
+    $statement->bindValue(':data',          $timestamp);
     
     // Adjust timestamp manually if necessary
     $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
-    $statement->bindValue(':data', $timestamp);
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
@@ -101,8 +96,7 @@ try {
         'projectid'     => 244570,
         'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
         'orderid'       => $orderID,
-        // 'amount'       => $paidSum * 100, // returning cents (for paysera) from euros (from DB)
-        'amount'       => COURSE_MONEY,
+        'amount'       => COURSE_PRICE,
         'currency'      => 'EUR',
         'country'       => 'LT',
         'p_firstname'   => $name,
