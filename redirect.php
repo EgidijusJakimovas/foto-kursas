@@ -7,9 +7,11 @@ try {
     date_default_timezone_set('Europe/Vilnius'); // Adjust to your local timezone
 
     // Database info
+
+    //TODO: ta pati padaryti kaip 29 eiluteje
     $host       = 'b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
     $user       = 'vo3l7cqkori4bdkn';
-    $pass       = 'vciaqvbz60v0z7jy';
+    $pass       = DB_PASSWORD;
     $database   = 'n9teib9it8m8u2z3';
     
     // Database table info
@@ -22,6 +24,9 @@ try {
     $paymentStatus  = 'payment_status';
     $paidSum        = 'paid_sum';
     $data           = 'data';
+
+    // Other info
+    $money          = COURSE_MONEY;
 
     // Custom PDO options.
     $options = array(
@@ -94,7 +99,7 @@ try {
         'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
         'orderid'       => $orderID,
         // 'amount'       => $paidSum * 100, // returning cents (for paysera) from euros (from DB)
-        'amount'       => 100,
+        'amount'       => COURSE_MONEY,
         'currency'      => 'EUR',
         'country'       => 'LT',
         'p_firstname'   => $name,

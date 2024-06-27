@@ -21,4 +21,7 @@
     define('DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM', 	'payment_sum');
     define('DB_TABLE_ORDERS_COLUMN_TIMESTAMP', 		'data');
 
+    // other info
+    define('COURSE_MONEY', 	100); // money in cents becouse of paysera
+
 ?>
