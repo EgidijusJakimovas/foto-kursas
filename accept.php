@@ -3,6 +3,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: antiquewhite;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .info {
+            margin-top: 10px;
+        }
+        .info a {
+            color: blue !important;
+        }
+        .info a:hover {
+            color: blue !important;
+        }
+    </style>
     <script type="text/javascript">
         setTimeout(function() {
             window.location.href = "index.html";
@@ -10,6 +30,10 @@
     </script>
 </head>
 <body>
-    <p>Thank you for your purchase! We have received your order and are processing it. Please check your email for payment confirmation and further instructions. You will be redirected to our homepage in 10 seconds.</p>
+    <div class="container">
+        <div class="info">
+            <p>Thank you for your purchase! We have received your order and are processing it. Please check your email for payment confirmation and further instructions. You will be redirected to our homepage in 10 seconds.</p>
+        </div>
+    </div>
 </body>
 </html>
