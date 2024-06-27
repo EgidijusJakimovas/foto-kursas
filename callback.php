@@ -7,8 +7,8 @@
 
 	try {
 		// TURN OFF DISPLAYING ERROR MESSAGES 
-		error_reporting(1);
-		ini_set('display_errors', 1);
+		error_reporting(0);
+		ini_set('display_errors', 0);
 		
 		$response = WebToPay::validateAndParseData(
 			$_REQUEST,
@@ -92,6 +92,6 @@
 	} catch (Exception $exception) {
 		echo "sql exception on 'callback.php' file. Enable error-reporting for more info.";
 		// TODO: comment in production
-		echo get_class($exception) . ':' . $exception->getMessage();
+		// echo get_class($exception) . ':' . $exception->getMessage();
 	}
 ?>
