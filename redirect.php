@@ -56,6 +56,9 @@ try {
         $order_id_from_db = '0000' . strval($id_from_db);
     }
 
+    // Adjust timestamp manually if necessary
+    $timestamp = date("Y-m-d H:i:s");
+
     // Bind user's entered values in form to our arguments
     $orderID        = $order_id_from_db;
     $name           = $_POST['name'];
@@ -63,7 +66,7 @@ try {
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
+    $paidSum        = COURSE_PRICE / 100; // because Paysera is counting in cents, but we have double in DB
     
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
@@ -74,9 +77,6 @@ try {
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
     $statement->bindValue(':data',          $timestamp);
-    
-    // Adjust timestamp manually if necessary
-    $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
@@ -93,10 +93,10 @@ try {
     }
 
     WebToPay::redirectToPayment([
-        'projectid'     => 244570,
-        'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
+        'projectid'     => PAYSERA_PROJECT_ID,
+        'sign_password' => PAYSERA_PASSWORD,
         'orderid'       => $orderID,
-        'amount'       => COURSE_PRICE,
+        'amount'        => COURSE_PRICE,
         'currency'      => 'EUR',
         'country'       => 'LT',
         'p_firstname'   => $name,
