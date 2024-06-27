@@ -86,6 +86,13 @@ try {
             $update = $pdo->prepare("UPDATE $table SET $paymentStatus = 1 WHERE $orderID = :response_order_id;");
             $update->bindParam(':response_order_id', $response_order_id);
             $update->execute();
+            
+            // Check if the update was successful
+            if ($update->rowCount() > 0) {
+                echo "Payment status updated successfully.";
+            } else {
+                echo "Payment status update failed.";
+            }
         }
     } else {
         throw new Exception('Payment was not successful');
