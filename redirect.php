@@ -1,4 +1,5 @@
 <?php
+
 require_once 'WebToPay.php';
 require_once 'const.php';
 
@@ -36,7 +37,7 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
     
     // Set MySQL session time zone
-    $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
+    $pdo->exec("SET time_zone = 'Europe/Vilnius';"); // Adjust to your MySQL server's time zone
     
     // Create our INSERT SQL query.
     $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
@@ -93,8 +94,8 @@ try {
     }
 
     WebToPay::redirectToPayment([
-        'projectid'     => PAYSERA_PROJECT_ID,
-        'sign_password' => PAYSERA_PASSWORD,
+        'projectid'     => 244570,
+        'sign_password' => '7ada0f6b4ace81a594c33bc2545246f7',
         'orderid'       => $orderID,
         'amount'        => COURSE_PRICE,
         'currency'      => 'EUR',
