@@ -15,7 +15,10 @@ try {
     $database   = 'n9teib9it8m8u2z3';
     
     // Database table info
-    $table          = 'orders';
+
+    //TODO: ta pati padaryti kaip 32 eiluteje
+
+    $table          = DB_TABLE_ORDERS;
     $orderID        = 'id';
     $name           = 'name';
     $surname        = 'surname';
@@ -65,7 +68,7 @@ try {
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSum        = $_POST['paid_sum'];
+    $paidSum        = COURSE_MONEY / 100; // becouse paysera is counting in cents, but we have double in DB
     
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
