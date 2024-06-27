@@ -25,7 +25,7 @@ try {
     $data           = DB_TABLE_ORDERS_COLUMN_DATA;
 
     // Other info
-    $money          = COURSE_MONEY;
+    $money          = COURSE_PRICE;
 
     // Custom PDO options.
     $options = array(
