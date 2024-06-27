@@ -36,8 +36,8 @@ try {
     // Connect to MySQL and instantiate our PDO object.
     $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
     
-    // Set MySQL session time zone
-    $pdo->exec("SET time_zone = 'Europe/Vilnius';"); // Adjust to your MySQL server's time zone
+    // Set MySQL session time zone to a fixed offset
+    $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
     
     // Create our INSERT SQL query.
     $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
