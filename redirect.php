@@ -21,7 +21,7 @@ try {
     $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $data           = DB_TABLE_ORDERS_COLUMN_TIMESTAMP;
+    $data           = DB_TABLE_ORDERS_COLUMN_DATA;
 
     // Other info
     $money          = COURSE_PRICE;
@@ -73,10 +73,10 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
-    $statement->bindValue(':data',          $data);
+    $statement->bindValue(':data',          $timestamp);
     
     // Adjust timestamp manually if necessary
-    $data = date("Y-m-d H:i:s", strtotime("+3 hours"));
+    $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
