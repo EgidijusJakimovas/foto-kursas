@@ -57,8 +57,10 @@ try {
         $order_id_from_db = '0000' . strval($id_from_db);
     }
 
-    // Adjust timestamp manually if necessary
-    $timestamp = date("Y-m-d H:i:s");
+    // Fetch the current time in PHP and manually add the timezone offset
+    $timestamp = new DateTime();
+    $timestamp->setTimezone(new DateTimeZone('Europe/Vilnius'));
+    $formattedTimestamp = $timestamp->format('Y-m-d H:i:s');
 
     // Bind user's entered values in form to our arguments
     $orderID        = $order_id_from_db;
@@ -77,7 +79,7 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
-    $statement->bindValue(':data',          $timestamp);
+    $statement->bindValue(':data',          $formattedTimestamp);
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
