@@ -18,7 +18,7 @@
     define('DB_TABLE_ORDERS_COLUMN_EMAIL', 			'email');
 	define('DB_TABLE_ORDERS_COLUMN_PHONE', 			'phone');
     define('DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS', 'payment_status');
-    define('DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM', 	'payment_sum');
+    define('DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM', 	'paid_sum');
     define('DB_TABLE_ORDERS_COLUMN_TIMESTAMP', 		'data');
 
     // other info
