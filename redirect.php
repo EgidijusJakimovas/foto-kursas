@@ -73,9 +73,9 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
-    $statement->bindValue(':data',          $timestamp);
     
     // Adjust timestamp manually if necessary
+    $statement->bindValue(':data',          $timestamp);
     $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
 
     // Execute the statement and insert our values.
