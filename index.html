@@ -8,7 +8,7 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: antiquewhite;
+        background-color: aliceblue;
       }
       .container {
         width: 80%;
@@ -66,12 +66,24 @@
       .purchase-section select {
         padding: 10px;
         margin-left: 10px;
+        cursor: pointer;
+        border-radius: 3px;
       }
       .purchase-section button {
+        width: 100px;
         padding: 10px;
-        margin-left: 10px;
+        margin-left: 5px;
+        border: 1px solid black;
+        border-radius: 3px;
+        box-sizing: border-box;
+        background-color: #292929;
+        color: #fff;
+        cursor: pointer;
+      }
+      .purchase-section button:hover {
+        color: black;
         background-color: white;
-        width: 80px;
+        transition: background-color 0.4s ease;
       }
       .note {
         margin-top: 20px;
@@ -92,7 +104,7 @@
         text-align: left;
       }
       .schedule th {
-        background-color: antiquewhite;
+        background-color: darkcyan;
       }
       @media (max-width: 768px) {
         .course-header {
