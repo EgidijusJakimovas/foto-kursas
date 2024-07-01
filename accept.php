@@ -25,7 +25,7 @@
     </style>
     <script type="text/javascript">
         setTimeout(function() {
-            window.location.href = "index.html";
+            window.location.href = "video-link.html";
         }, 10000); // 10000 milliseconds = 10 seconds
     </script>
 </head>
@@ -35,7 +35,7 @@
             <h1>Payment Successful</h1>
         </div>
         <div class="info">
-            <p>Thank you for your purchase! We have received your order and are processing it. Please check your email for payment confirmation and further instructions. You will be redirected to our homepage in 10 seconds.</p>
+            <p>Thank you for your purchase! We have received your order and are processing it. Please check your email for payment confirmation and further instructions. You will be redirected to our video link page in 10 seconds.</p>
         </div>
     </div>
 </body>
