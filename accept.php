@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: antiquewhite;
+            background-color: aliceblue;
         }
         .container {
             width: 80%;
