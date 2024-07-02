@@ -47,6 +47,9 @@ try {
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
+
+    //TODO uzdaryti prisijingima
+    $pdo = null;
     
     // GET MAX ID FOR MAKING ORDER ID
     $pdo2 = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
@@ -85,6 +88,9 @@ try {
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
 
+    //TODO uzdaryti prisijungima
+    $pdo2 = null;
+
     // Because PDOStatement::execute returns a TRUE or FALSE value,
     // we can easily check to see if our insert was successful.
     // if($inserted){
@@ -113,7 +119,7 @@ try {
         'test'          => 0,
     ]);
 } catch (Exception $exception) {
-    echo "SQL exception on 'go.php' file. Enable error-reporting for more info.";
+    echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
     //TODO: HIDE IT IN PRODUCTION
     echo get_class($exception) . ':' . $exception->getMessage();
 }
