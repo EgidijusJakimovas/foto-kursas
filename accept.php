@@ -25,6 +25,7 @@
     </style>
     <script type="text/javascript">
         setTimeout(function() {
+            //TODO Nukreipsite i kalkuliatoriaus aplikacija, kur bus vietoj pirkimo migtuko bus uzkrautas youtube video
             window.location.href = "video-link.html";
         }, 10000); // 10000 milliseconds = 10 seconds
     </script>

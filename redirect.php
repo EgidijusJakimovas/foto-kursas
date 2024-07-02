@@ -47,9 +47,6 @@ try {
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
-
-    //TODO uzdaryti prisijingima
-    $pdo = null;
     
     // GET MAX ID FOR MAKING ORDER ID
     $pdo2 = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
@@ -88,16 +85,19 @@ try {
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
 
-    //TODO uzdaryti prisijungima
-    $pdo2 = null;
-
     // Because PDOStatement::execute returns a TRUE or FALSE value,
     // we can easily check to see if our insert was successful.
     // if($inserted){
     // echo 'Row inserted!<br>';
     // }
 
+    // Close the second PDO connection
+    $data2 = null;
+    $pdo2 = null;
+
     // PAYSERA PAYMENT
+    // kai vartotojas paspausti pirkti mygtuka kalkuriatoriuje formoje tures buti linkas i foto kursu redirect php faila
+    // post metodu i si faila siusite el pasto adresa
     function getSelfUrl(): string {
         return 'https://foto-kursas-930ec9144443.herokuapp.com';
     }
@@ -118,6 +118,10 @@ try {
         'callbackurl'   => getSelfUrl() . '/callback.php',
         'test'          => 0,
     ]);
+
+    // Close the first PDO connection
+    $statement = null;
+    $pdo = null;
 } catch (Exception $exception) {
     echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
     //TODO: HIDE IT IN PRODUCTION
