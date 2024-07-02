@@ -47,20 +47,24 @@ try {
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
+
+    //TODO uzdaryti prisijingima
+    $pdo = null;
     
     // GET MAX ID FOR MAKING ORDER ID
-    $stmtMaxId = $pdo->prepare("SELECT MAX(id) as id FROM $table LIMIT 1;");
-    $stmtMaxId->execute();
-    $row2 = $stmtMaxId->fetch();
+    $pdo2 = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
+    $data2 = $pdo2->prepare("SELECT MAX(id) as id FROM $table LIMIT 1;");
+    $data2->execute();
+    $row2 = $data2->fetch();
     
     // Make sure only 1 result is returned
-    if($stmtMaxId->rowCount() == 1){
+    if($data2->rowCount() == 1){
         $id_from_db = $row2['id'] + 1; // because always returns id - 1
         $order_id_from_db = '0000' . strval($id_from_db);
     }
 
     // Close the statement used to get max ID
-    $stmtMaxId = null;
+    $data2 = null;
 
     // Bind user's entered values in form to our arguments
     $orderID        = $order_id_from_db;
@@ -69,7 +73,7 @@ try {
     $email          = $_POST['email'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSum        = COURSE_PRICE / 100; // because paysera is counting in cents, but we have double in DB
+    $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
     
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
@@ -91,18 +95,22 @@ try {
     $statement = null;
     $pdo = null;
 
+    // Because PDOStatement::execute returns a TRUE or FALSE value,
+    // we can easily check to see if our insert was successful.
+    // if($inserted){
+    // echo 'Row inserted!<br>';
+    // }
+
     // PAYSERA PAYMENT
-    // Define a function to get self URL
     function getSelfUrl(): string {
         return 'https://foto-kursas-930ec9144443.herokuapp.com';
     }
 
-    // Redirect to payment
     WebToPay::redirectToPayment([
         'projectid'     => PAYSERA_PROJECT_ID,
         'sign_password' => PAYSERA_PASSWORD,
         'orderid'       => $orderID,
-        'amount'        => COURSE_PRICE,
+        'amount'       => COURSE_PRICE,
         'currency'      => 'EUR',
         'country'       => 'LT',
         'p_firstname'   => $name,
@@ -114,12 +122,9 @@ try {
         'callbackurl'   => getSelfUrl() . '/callback.php',
         'test'          => 0,
     ]);
-
-} catch (PDOException $exception) {
-    echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
-    // TODO: HIDE THIS IN PRODUCTION
-    echo get_class($exception) . ':' . $exception->getMessage();
 } catch (Exception $exception) {
-    echo "Exception occurred: " . $exception->getMessage();
+    echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
+    //TODO: HIDE IT IN PRODUCTION
+    echo get_class($exception) . ':' . $exception->getMessage();
 }
 ?>
