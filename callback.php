@@ -50,7 +50,9 @@
 			// Get values
 			$order_id 		= $row["$orderID"];
 			$price 			= $row["$paidSum"];
-		} 
+		}
+
+		$pdo = null;
 		
 		if ($response['status'] === '1' || $response['status'] === '3') {
 			
@@ -84,6 +86,8 @@
 				$data2->bindParam(1, $paid2, PDO::PARAM_INT); // everything OK, so user paid
 				$data2->bindParam(2, $response_order_id);
 				$data2->execute();
+
+				$pdo2 = null;
 			}
 			
 		} else {
