@@ -47,9 +47,6 @@ try {
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
-
-    //TODO uzdaryti prisijingima
-    $pdo = null;
     
     // GET MAX ID FOR MAKING ORDER ID
     $pdo2 = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
