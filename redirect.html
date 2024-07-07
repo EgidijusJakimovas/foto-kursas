@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Apmokėjimas - Fotokursas.lt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="verify-paysera" content="67286da624b639b8633b9cb2630a4cd1">
-    <link rel="stylesheet" id="css" href="styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="styles.css" type="text/css" media="all">
     <style>
+        /* Your existing CSS styles */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -117,7 +117,7 @@
 <div class="container">
     <div class="user-details">
         <h2>Pirkėjo duomenys</h2>
-        <form method="get" action="redirect.php" autocomplete="on">
+        <form method="post" action="redirect.php" autocomplete="on">
             <table>
                 <tr>
                     <td>Vardas</td>
@@ -129,7 +129,7 @@
                 </tr>
                 <tr>
                     <td>El.paštas</td>
-                    <input type="text" id="email" name="email" value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>" required>
+                    <td><input type="text" id="email" name="email" required></td>
                 </tr>
                 <tr>
                     <td>Telefonas</td>
@@ -145,7 +145,7 @@
                     </td>
                 </tr>
             </table>
-            <button type="submit" class="button" name="place_order" id="place_order" value="Apmokėti" data-value="Apmokėti">Apmokėti</button>
+            <button type="submit" class="button" name="place_order" id="place_order">Apmokėti</button>
         </form>
     </div>
     <div class="order-details">
@@ -170,16 +170,18 @@
     <a class="btn" href="https://heroku-calculator-a6b0384b6190.herokuapp.com/courses">Back</a>
 </div>
 
+<!-- JavaScript to fetch and fill email field -->
 <script>
-    // JavaScript to retrieve email from query parameter and populate the email field
-    window.onload = function() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var emailParam = urlParams.get('email');
-
-        if (emailParam) {
-            document.getElementById('email').value = emailParam;
-        }
-    };
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('fetch_email.php') // Adjust the path based on your server setup
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('email').value = data.trim(); // Auto-fill email field
+            })
+            .catch(error => {
+                console.error('Error fetching email:', error);
+            });
+    });
 </script>
 
 </body>
