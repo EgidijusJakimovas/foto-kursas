@@ -170,6 +170,16 @@
     <a class="btn" href="https://heroku-calculator-a6b0384b6190.herokuapp.com/courses">Back</a>
 </div>
 
+<form action="submit_form.php" method="post">
+    <!-- Other form fields -->
+    <?php include('receive_email.php'); ?>
+    <!-- Example: Input field filled with received email -->
+    <input type="email" name="email" value="<?php echo $from_email; ?>">
+    <!-- Submit button -->
+    <button type="submit">Submit</button>
+</form>
+
+
 <script>
     // Fetch email address from backend API
     fetch('https://your-backend-api/received-email')
