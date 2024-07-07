@@ -117,7 +117,7 @@
 <div class="container">
     <div class="user-details">
         <h2>Pirkėjo duomenys</h2>
-        <form method="post" action="redirect.php" autocomplete="on">
+        <form method="get" action="redirect.php" autocomplete="on">
             <table>
                 <tr>
                     <td>Vardas</td>
@@ -129,7 +129,7 @@
                 </tr>
                 <tr>
                     <td>El.paštas</td>
-                        <td><input type="text" id="email" name="email" value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>" required></td>
+                    <input type="text" id="email" name="email" value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>" required>
                 </tr>
                 <tr>
                     <td>Telefonas</td>
