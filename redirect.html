@@ -170,19 +170,14 @@
     <a class="btn" href="https://heroku-calculator-a6b0384b6190.herokuapp.com/courses">Back</a>
 </div>
 
-<!-- JavaScript to fetch and fill email field -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('fetch_email.php') // Adjust the path based on your server setup
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('email').value = data.trim(); // Auto-fill email field
-            })
-            .catch(error => {
-                console.error('Error fetching email:', error);
-            });
-    });
+    // Fetch email address from backend API
+    fetch('https://your-backend-api/received-email')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('email').value = data.email; // Assuming data structure from backend
+        })
+        .catch(error => console.error('Error fetching email:', error));
 </script>
-
 </body>
 </html>
