@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Apmokėjimas - Fotokursas.lt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" type="text/css" media="all">
+    <meta name="verify-paysera" content="67286da624b639b8633b9cb2630a4cd1">
+    <link rel="stylesheet" id="css" href="styles.css" type="text/css" media="all">
     <style>
-        /* Your existing CSS styles */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -118,7 +118,6 @@
     <div class="user-details">
         <h2>Pirkėjo duomenys</h2>
         <form method="post" action="redirect.php" autocomplete="on">
-            <table>
                 <tr>
                     <td>Vardas</td>
                     <td><input type="text" id="name" name="name" required></td>
@@ -144,8 +143,7 @@
                         </span>
                     </td>
                 </tr>
-            </table>
-            <button type="submit" class="button" name="place_order" id="place_order">Apmokėti</button>
+            <button type="submit" class="button" name="place_order" id="place_order" value="Apmokėti" data-value="Apmokėti">Apmokėti</button>
         </form>
     </div>
     <div class="order-details">
