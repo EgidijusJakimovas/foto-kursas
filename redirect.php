@@ -121,15 +121,6 @@ try {
     // echo get_class($exception) . ':' . $exception->getMessage();
 }
 
-// Initialize variables
-$email = "";
-
-
-
-    // Retrieve and sanitize form data
-    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-
-
 ?>
 
 <!DOCTYPE html>
