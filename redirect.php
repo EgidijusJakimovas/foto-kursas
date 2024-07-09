@@ -121,6 +121,9 @@ try {
     // echo get_class($exception) . ':' . $exception->getMessage();
 }
 
+// Initialize variables
+$email = "";
+
 ?>
 
 <!DOCTYPE html>
