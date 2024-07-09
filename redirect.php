@@ -6,6 +6,10 @@ require_once('WebToPay.php');
 require_once 'const.php';
 
 try {
+    // TURN OFF DISPLAYING ERROR MESSAGES 
+	error_reporting(0);
+	ini_set('display_errors', 0);
+
     // Set PHP timezone to match your local timezone
     date_default_timezone_set('Europe/Vilnius'); // Adjust to your local timezone
 
