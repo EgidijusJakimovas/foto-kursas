@@ -124,6 +124,9 @@ try {
 // Initialize variables
 $email = "";
 
+// Retrieve and sanitize form data
+$email = $_POST['email'];
+
 ?>
 
 <!DOCTYPE html>
