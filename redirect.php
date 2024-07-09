@@ -213,7 +213,7 @@ try {
     <div class="container">
       <div class="user-details">
         <h2>Užsakymo Informacija</h2>
-        <form method="post" action="your_payment_handler.php">
+        <form method="post" action="redirect.php">
           <label for="name">Vardas:</label>
           <input type="text" id="name" name="name" required value="<?php echo htmlspecialchars($name); ?>">
           <label for="surname">Pavardė:</label>
