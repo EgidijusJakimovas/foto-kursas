@@ -124,16 +124,11 @@ try {
 // Initialize variables
 $email = "";
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Debug: Output POST data
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
+
 
     // Retrieve and sanitize form data
     $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-}
+
 
 ?>
 
