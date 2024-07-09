@@ -66,11 +66,14 @@ try {
     $orderID        = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
-    $email          = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; // Check if email is set and sanitize it
+    $email          = isset($_POST['email']) ? $_POST['email'] : ''; // Check if email is set
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
     
+    // Retrieve and sanitize form data
+    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; // Set email to empty string if not set
+
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
     $statement->bindValue(':name',          $name);
