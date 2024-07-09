@@ -66,7 +66,7 @@ try {
     $orderID        = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
-    $email          = $_POST['email'];
+    $email          = isset($_POST['email']) ? $_POST['email'] : ''; // Check if email is set
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
@@ -122,7 +122,7 @@ try {
 }
 
 // Retrieve and sanitize form data
-$email = $_POST['email'];
+$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; // Set email to empty string if not set
 
 ?>
 
@@ -262,7 +262,7 @@ $email = $_POST['email'];
           </tr>
           <tr>
             <td>El.paštas</td>
-            <input type="text" id="email" name="email" required value="<?php echo $email ?>">
+            <input type="text" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
           </tr>
           <tr>
             <td>Telefonas</td>
