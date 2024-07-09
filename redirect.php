@@ -118,7 +118,7 @@ try {
 } catch (Exception $exception) {
     echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
     //TODO: HIDE IT IN PRODUCTION
-    echo get_class($exception) . ':' . $exception->getMessage();
+    // echo get_class($exception) . ':' . $exception->getMessage();
 }
 
 // Initialize variables
@@ -273,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </tr>
           <tr>
             <td>El.paštas</td>
-            <input type="email" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
+            <input type="text" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
           </tr>
           <tr>
             <td>Telefonas</td>
