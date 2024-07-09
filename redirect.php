@@ -5,6 +5,9 @@ require_once('WebToPay.php');
 // FOR CREDENTIALS
 require_once 'const.php';
 
+error_reporting(0);
+ini_set('display_errors', 0);
+
 try {
     // Set PHP timezone to match your local timezone
     date_default_timezone_set('Europe/Vilnius'); // Adjust to your local timezone
