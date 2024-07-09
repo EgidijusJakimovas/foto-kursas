@@ -66,7 +66,7 @@ try {
     $orderID        = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
-    $email          = isset($_POST['email']) ? $_POST['email'] : ''; // Check if email is set
+    $email          = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; // Check if email is set and sanitize it
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
@@ -120,9 +120,6 @@ try {
     //TODO: HIDE IT IN PRODUCTION
     // echo get_class($exception) . ':' . $exception->getMessage();
 }
-
-// Retrieve and sanitize form data
-$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; // Set email to empty string if not set
 
 ?>
 
