@@ -122,19 +122,13 @@ try {
 }
 ?>
 
-<?php
-echo '<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="">
   <head>
     <title>Apmokėjimas - Fotokursas.lt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="verify-paysera" content="67286da624b639b8633b9cb2630a4cd1" />
-    <link
-      rel="stylesheet"
-      id="css"
-      href="styles.css"
-      type="text/css"
-      media="all" />
+    <link rel="stylesheet" id="css" href="styles.css" type="text/css" media="all" />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -219,19 +213,18 @@ echo '<!DOCTYPE html>
     <div class="container">
       <div class="user-details">
         <h2>Užsakymo Informacija</h2>
-        <form method="post" action="redirect.php">
+        <form method="post" action="your_payment_handler.php">
           <label for="name">Vardas:</label>
-          <input type="text" id="name" name="name" required value="'.htmlspecialchars($name).'">
+          <input type="text" id="name" name="name" required value="<?php echo htmlspecialchars($name); ?>">
           <label for="surname">Pavardė:</label>
-          <input type="text" id="surname" name="surname" required value="'.htmlspecialchars($surname).'">
+          <input type="text" id="surname" name="surname" required value="<?php echo htmlspecialchars($surname); ?>">
           <label for="email">El. paštas:</label>
-          <input type="email" id="email" name="email" required value="'.htmlspecialchars($email).'">
+          <input type="email" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
           <label for="phone">Telefono numeris:</label>
-          <input type="tel" id="phone" name="phone" required value="'.htmlspecialchars($phone).'">
+          <input type="tel" id="phone" name="phone" required value="<?php echo htmlspecialchars($phone); ?>">
           <input type="submit" value="Pateikti užsakymą">
         </form>
       </div>
     </div>
   </body>
-</html>';
-?>
+</html>
