@@ -268,7 +268,7 @@ $email = "";
           </tr>
           <tr>
             <td>El.paštas</td>
-            <input type="text" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
+            <input type="text" id="email" name="email" required value="<?php echo $email ?>">
           </tr>
           <tr>
             <td>Telefonas</td>
