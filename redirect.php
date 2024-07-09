@@ -120,6 +120,30 @@ try {
     //TODO: HIDE IT IN PRODUCTION
     echo get_class($exception) . ':' . $exception->getMessage();
 }
+
+// Initialize variables
+$name = "";
+$surname = "";
+$email = "";
+$phone = "";
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Debug: Output POST data
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+
+    // Retrieve and sanitize form data
+    $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+    $surname = isset($_POST['surname']) ? htmlspecialchars($_POST['surname']) : '';
+    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+    $phone = isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '';
+
+    // Debug: Output sanitized variables
+    echo "Name: $name, Surname: $surname, Email: $email, Phone: $phone";
+}
+
 ?>
 
 <!DOCTYPE html>
