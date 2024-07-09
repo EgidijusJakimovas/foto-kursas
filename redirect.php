@@ -6,10 +6,6 @@ require_once('WebToPay.php');
 require_once 'const.php';
 
 try {
-    // TURN OFF DISPLAYING ERROR MESSAGES 
-	error_reporting(0);
-	ini_set('display_errors', 0);
-
     // Set PHP timezone to match your local timezone
     date_default_timezone_set('Europe/Vilnius'); // Adjust to your local timezone
 
@@ -123,6 +119,8 @@ try {
     echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
     //TODO: HIDE IT IN PRODUCTION
     // echo get_class($exception) . ':' . $exception->getMessage();
+    error_reporting(0);
+	ini_set('display_errors', 0);
 }
 
     // Retrieve and sanitize form data
