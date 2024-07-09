@@ -1,5 +1,4 @@
 <?php
-
 // FOR PAYSERA
 require_once('WebToPay.php');
 
@@ -121,4 +120,118 @@ try {
     //TODO: HIDE IT IN PRODUCTION
     echo get_class($exception) . ':' . $exception->getMessage();
 }
+?>
+
+<?php
+echo '<!DOCTYPE html>
+<html lang="">
+  <head>
+    <title>Apmokėjimas - Fotokursas.lt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="verify-paysera" content="67286da624b639b8633b9cb2630a4cd1" />
+    <link
+      rel="stylesheet"
+      id="css"
+      href="styles.css"
+      type="text/css"
+      media="all" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: aliceblue;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .user-details {
+        flex: 1 1 400px;
+        margin-right: 20px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .order-details {
+        flex: 1 1 calc(50% - 40px);
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #333333;
+        margin-top: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table th,
+      table td {
+        border: 1px solid #dddddd;
+        padding: 12px;
+        text-align: left;
+      }
+      table th {
+        background-color: #f2f2f2;
+      }
+      .total-row {
+        font-weight: bold;
+      }
+      a {
+        color: #fc9002;
+        text-decoration: none;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="submit"] {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #cccccc;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #292929;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="user-details">
+        <h2>Užsakymo Informacija</h2>
+        <form method="post" action="redirect.php">
+          <label for="name">Vardas:</label>
+          <input type="text" id="name" name="name" required value="'.htmlspecialchars($name).'">
+          <label for="surname">Pavardė:</label>
+          <input type="text" id="surname" name="surname" required value="'.htmlspecialchars($surname).'">
+          <label for="email">El. paštas:</label>
+          <input type="email" id="email" name="email" required value="'.htmlspecialchars($email).'">
+          <label for="phone">Telefono numeris:</label>
+          <input type="tel" id="phone" name="phone" required value="'.htmlspecialchars($phone).'">
+          <input type="submit" value="Pateikti užsakymą">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>';
 ?>
