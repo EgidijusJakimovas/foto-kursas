@@ -41,15 +41,8 @@ try {
     // Set MySQL session time zone
     $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
     
-    // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
-    
-    // Prepare our statement.
-    $statement = $pdo->prepare($sql);
-    
     // GET MAX ID FOR MAKING ORDER ID
-    $pdo2 = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
-    $data2 = $pdo2->prepare("SELECT MAX(id) as id FROM $table LIMIT 1;");
+    $data2 = $pdo->prepare("SELECT MAX(id) as id FROM $table LIMIT 1;");
     $data2->execute();
     $row2 = $data2->fetch();
     
@@ -62,6 +55,12 @@ try {
     // Close the statement used to get max ID
     $data2 = null;
 
+    // Create our INSERT SQL query.
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
+    
+    // Prepare our statement.
+    $statement = $pdo->prepare($sql);
+    
     // Bind user's entered values in form to our arguments
     $orderID        = $order_id_from_db;
     $name           = $_POST['name'];
@@ -91,12 +90,6 @@ try {
     $statement = null;
     $pdo = null;
 
-    // Because PDOStatement::execute returns a TRUE or FALSE value,
-    // we can easily check to see if our insert was successful.
-    // if($inserted){
-    // echo 'Row inserted!<br>';
-    // }
-
     // PAYSERA PAYMENT
     function getSelfUrl(): string {
         return 'https://foto-kursas-930ec9144443.herokuapp.com';
@@ -120,7 +113,7 @@ try {
     //TODO: HIDE IT IN PRODUCTION
     echo get_class($exception) . ':' . $exception->getMessage();
     error_reporting(1);
-	  ini_set('display_errors', 1);
+    ini_set('display_errors', 1);
 }
 
 ?>
