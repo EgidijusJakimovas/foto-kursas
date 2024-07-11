@@ -14,7 +14,7 @@ try {
     $user       = DB_USERNAME;
     $pass       = DB_PASSWORD;
     $database   = DB_NAME;
-    
+
     // Database table info
     $table          = DB_TABLE_ORDERS;
     $orderID        = DB_TABLE_ORDERS_COLUMN_ID;
@@ -38,6 +38,16 @@ try {
     // Connect to MySQL and instantiate our PDO object.
     $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4", $user, $pass, $options);
     
+    // Kill existing connections
+    $stmt = $pdo->query("SHOW PROCESSLIST");
+    $connections = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($connections as $connection) {
+        if ($connection['User'] == $user && $connection['Command'] != 'Sleep' && $connection['Id'] != $pdo->query("SELECT CONNECTION_ID()")->fetchColumn()) {
+            $pdo->exec("KILL {$connection['Id']}");
+        }
+    }
+
     // Set MySQL session time zone
     $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
     
@@ -47,7 +57,7 @@ try {
     $row2 = $data2->fetch();
     
     // Make sure only 1 result is returned
-    if($data2->rowCount() == 1){
+    if ($data2->rowCount() == 1) {
         $id_from_db = $row2['id'] + 1; // because always returns id - 1
         $order_id_from_db = '0000' . strval($id_from_db);
     }
