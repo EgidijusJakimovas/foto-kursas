@@ -1,9 +1,7 @@
 <?php
-// Bind user's entered values in form to our arguments
-$email = isset($_POST['email']) ? $_POST['email'] : ''; // Check if email is set
 
-// Retrieve and sanitize form data
-$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; // Set email to empty string if not set
+// Retrieve and sanitize form data and email to empty string if not set
+$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
 
 ?>
 
