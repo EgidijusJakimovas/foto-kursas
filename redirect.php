@@ -47,9 +47,6 @@ try {
             $pdo->exec("KILL {$connection['Id']}");
         }
     }
-
-    // Set MySQL session time zone
-    $pdo->exec("SET time_zone = '+03:00';"); // Adjust to your MySQL server's time zone
     
     // GET MAX ID FOR MAKING ORDER ID
     $data2 = $pdo->prepare("SELECT MAX(id) as id FROM $table LIMIT 1;");
