@@ -5,10 +5,10 @@
     define('PAYSERA_CURRENCY',		'EUR');
 
     // database connection information
-    define('DB_NAME',		'kaofmttgyoub9836');
-    define('DB_HOST',		'cvktne7b4wbj4ks1.chr7pe7iynqr.eu-west-1.rds.amazonaws.com');
-    define('DB_USERNAME',	'un0bbzmensrdyygd');
-    define('DB_PASSWORD',	'xfsnei29vdrk6k40');
+    define('DB_NAME',		'xejygo9toc5f5tj2');
+    define('DB_HOST',		'gi6kn64hu98hy0b6.chr7pe7iynqr.eu-west-1.rds.amazonaws.com');
+    define('DB_USERNAME',	'k42upy09mrfc1nzz');
+    define('DB_PASSWORD',	'pz9q2be24fhs6lfq');
 
     // database tables information
     define('DB_TABLE_ORDERS',                       'orders');
