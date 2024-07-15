@@ -26,7 +26,7 @@
     <script type="text/javascript">
         setTimeout(function() {
             //TODO Nukreipsite i kalkuliatoriaus aplikacija, kur bus vietoj pirkimo migtuko bus uzkrautas youtube video
-            window.location.href = "video-link.html";
+            window.location.href = "https://heroku-calculator-a6b0384b6190.herokuapp.com/courses";
         }, 10000); // 10000 milliseconds = 10 seconds
     </script>
 </head>
