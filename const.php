@@ -20,6 +20,7 @@
     define('DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS', 'payment_status');
     define('DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM', 	'paid_sum');
     define('DB_TABLE_ORDERS_COLUMN_DATA', 		    'data');
+    define('DB_TABLE_ORDERS_COLUMN_USER_ID', 		'user_id');
 
     // other info
     define('COURSE_PRICE', 	100); // money in cents becouse of paysera requirements

@@ -25,6 +25,8 @@ try {
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
     $data           = DB_TABLE_ORDERS_COLUMN_DATA;
+    $userID        = DB_TABLE_ORDERS_COLUMN_USER_ID;
+
 
     // Other info
     $money          = COURSE_PRICE;
@@ -63,7 +65,7 @@ try {
     $data2 = null;
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data, $userID) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
@@ -85,6 +87,7 @@ try {
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
+    $statement->bindValue(':user_id',       $userID);
     
     // Adjust timestamp manually if necessary
     $timestamp = date("Y-m-d H:i:s");
