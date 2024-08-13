@@ -63,7 +63,7 @@ try {
     $data2 = null;
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phoneNumber, $paymentStatus, $paidSum, $data_time) VALUES (:id, :name, :surname, :email, :phone_number, :payment_status, :paid_sum, :data_time)";
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phoneNumber, $paymentStatus, $paidSum, $dataTime) VALUES (:id, :name, :surname, :email, :phone_number, :payment_status, :paid_sum, :data_time)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
