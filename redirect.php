@@ -25,8 +25,7 @@ try {
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
     $data           = DB_TABLE_ORDERS_COLUMN_DATA;
-    $userID        = DB_TABLE_ORDERS_COLUMN_USER_ID;
-
+    $userID         = DB_TABLE_ORDERS_COLUMN_USER_ID;
 
     // Other info
     $money          = COURSE_PRICE;
@@ -78,7 +77,7 @@ try {
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
-    $userID         = $_POST['user_id'];
+    $userID         = 1;
 
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
