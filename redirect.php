@@ -21,10 +21,10 @@ try {
     $name           = DB_TABLE_ORDERS_COLUMN_NAME;
     $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
     $email          = DB_TABLE_ORDERS_COLUMN_EMAIL;
-    $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
+    $phoneNumber    = DB_TABLE_ORDERS_COLUMN_PHONE_NUMBER;
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $data           = DB_TABLE_ORDERS_COLUMN_DATA;
+    $dataTime       = DB_TABLE_ORDERS_COLUMN_DATA_TIME;
 
     // Other info
     $money          = COURSE_PRICE;
@@ -63,7 +63,7 @@ try {
     $data2 = null;
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phoneNumber, $paymentStatus, $paidSum, $data_time) VALUES (:id, :name, :surname, :email, :phone_number, :payment_status, :paid_sum, :data_time)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
@@ -73,7 +73,7 @@ try {
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
     $email          = $_POST['email'];
-    $phone          = $_POST['phone'];
+    $phoneNumber    = $_POST['phone_number'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
 
@@ -88,7 +88,7 @@ try {
     
     // Adjust timestamp manually if necessary
     $timestamp = date("Y-m-d H:i:s");
-    $statement->bindValue(':data', $timestamp);
+    $statement->bindValue(':data_time', $timestamp);
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
