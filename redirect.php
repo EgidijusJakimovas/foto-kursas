@@ -87,7 +87,7 @@ try {
     $statement->bindValue(':paid_sum',      $paidSum);
     
     // Adjust timestamp manually if necessary
-    $timestamp = date("Y-m-d H:i:s", strtotime("+3 hours"));
+    $timestamp = date("Y-m-d H:i:s");
     $statement->bindValue(':data', $timestamp);
 
     // Execute the statement and insert our values.
