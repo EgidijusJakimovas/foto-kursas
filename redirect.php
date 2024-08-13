@@ -82,7 +82,7 @@ try {
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
-    $statement->bindValue(':phone',         $phone);
+    $statement->bindValue(':phone_number',  $phoneNumber);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
     
