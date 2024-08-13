@@ -78,6 +78,7 @@ try {
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
+    $userID         = $_POST['user_id'];
 
     // Against SQL injections
     $statement->bindValue(':id',            $orderID);
