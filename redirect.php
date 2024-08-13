@@ -21,10 +21,10 @@ try {
     $name           = DB_TABLE_ORDERS_COLUMN_NAME;
     $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
     $email          = DB_TABLE_ORDERS_COLUMN_EMAIL;
-    $phoneNumber    = DB_TABLE_ORDERS_COLUMN_PHONE_NUMBER;
+    $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $dataTime       = DB_TABLE_ORDERS_COLUMN_DATA_TIME;
+    $data           = DB_TABLE_ORDERS_COLUMN_DATA;
 
     // Other info
     $money          = COURSE_PRICE;
@@ -63,7 +63,7 @@ try {
     $data2 = null;
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phoneNumber, $paymentStatus, $paidSum, $dataTime) VALUES (:id, :name, :surname, :email, :phone_number, :payment_status, :paid_sum, :data_time)";
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
@@ -73,7 +73,7 @@ try {
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
     $email          = $_POST['email'];
-    $phoneNumber    = $_POST['phone_number'];
+    $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
     $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
 
@@ -82,13 +82,13 @@ try {
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
-    $statement->bindValue(':phone_number',  $phoneNumber);
+    $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
     $statement->bindValue(':paid_sum',      $paidSum);
     
     // Adjust timestamp manually if necessary
     $timestamp = date("Y-m-d H:i:s");
-    $statement->bindValue(':data_time', $timestamp);
+    $statement->bindValue(':data', $timestamp);
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
