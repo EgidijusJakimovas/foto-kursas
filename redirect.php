@@ -83,21 +83,21 @@ try {
     $statement = $pdo->prepare($sql);
     
     // Bind user's entered values in form to our arguments
-    $orderIDValue   = $order_id_from_db;
+    $orderID   = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSumValue   = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
+    $paidSum        = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
 
     // Bind values to the statement
-    $statement->bindValue(':id',            $orderIDValue);
+    $statement->bindValue(':id',            $orderID);
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
     $statement->bindValue(':phone',         $phone);
     $statement->bindValue(':payment_status',$paymentStatus);
-    $statement->bindValue(':paid_sum',      $paidSumValue);
+    $statement->bindValue(':paid_sum',      $paidSum);
     $statement->bindValue(':user_id',       $userID);
     
     // Adjust timestamp manually if necessary
