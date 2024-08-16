@@ -141,7 +141,7 @@ $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
           </tr>
           <tr>
             <td>El.paštas</td>
-            <input type="text" id="email" name="email" required value="<?php echo htmlspecialchars($email); ?>">
+            <input type="text" id="email" name="email" required readonly value="<?php echo htmlspecialchars($email); ?>">
           </tr>
           <tr>
             <td>Telefonas</td>
