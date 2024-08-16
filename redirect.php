@@ -17,15 +17,15 @@ try {
 
     // Database table info
     $table          = DB_TABLE_ORDERS;
-    $orderIDColumn  = DB_TABLE_ORDERS_COLUMN_ID; // Column name
-    $nameColumn     = DB_TABLE_ORDERS_COLUMN_NAME; // Column name
-    $surnameColumn  = DB_TABLE_ORDERS_COLUMN_SURNAME; // Column name
-    $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL; // Column name
-    $phoneColumn    = DB_TABLE_ORDERS_COLUMN_PHONE; // Column name
-    $paymentStatusColumn = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS; // Column name
-    $paidSumColumn  = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM; // Column name
-    $dataColumn     = DB_TABLE_ORDERS_COLUMN_DATA; // Column name
-    $userIDColumn   = DB_TABLE_ORDERS_COLUMN_USER_ID; // Column name
+    $orderIDColumn  = DB_TABLE_ORDERS_COLUMN_ID;
+    $nameColumn     = DB_TABLE_ORDERS_COLUMN_NAME;
+    $surnameColumn  = DB_TABLE_ORDERS_COLUMN_SURNAME;
+    $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL;
+    $phoneColumn    = DB_TABLE_ORDERS_COLUMN_PHONE;
+    $paymentStatusColumn = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
+    $paidSumColumn  = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
+    $dataColumn     = DB_TABLE_ORDERS_COLUMN_DATA;
+    $userIDColumn   = DB_TABLE_ORDERS_COLUMN_USER_ID;
 
     // Custom PDO options.
     $options = array(
