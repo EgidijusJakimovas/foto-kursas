@@ -85,7 +85,7 @@ try {
     $statement->bindValue(':user_id',       $userID);
     
     // Adjust timestamp manually if necessary
-    $timestamp = date("Y-m-d H:i:s");
+    $timestamp = (new DateTime())->format('Y-m-d H:i:s');
     $statement->bindValue(':data', $timestamp);
 
     // Execute the statement and insert our values.
