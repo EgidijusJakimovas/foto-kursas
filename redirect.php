@@ -18,14 +18,14 @@ try {
     // Database table info
     $table          = DB_TABLE_ORDERS;
     $orderID        = DB_TABLE_ORDERS_COLUMN_ID;
-    $nameColumn     = DB_TABLE_ORDERS_COLUMN_NAME;
-    $surnameColumn  = DB_TABLE_ORDERS_COLUMN_SURNAME;
+    $name           = DB_TABLE_ORDERS_COLUMN_NAME;
+    $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
     $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL; // Renamed to avoid conflict with variable $email
-    $phoneColumn    = DB_TABLE_ORDERS_COLUMN_PHONE;
+    $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $dataColumn     = DB_TABLE_ORDERS_COLUMN_DATA;
-    $userIDColumn   = DB_TABLE_ORDERS_COLUMN_USER_ID;
+    $data           = DB_TABLE_ORDERS_COLUMN_DATA;
+    $userID         = DB_TABLE_ORDERS_COLUMN_USER_ID;
 
     // Custom PDO options.
     $options = array(
@@ -76,7 +76,7 @@ try {
     $userID = $user['id'];
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO `$table` (`$orderID`, `$nameColumn`, `$surnameColumn`, `$emailColumn`, `$phoneColumn`, `$paymentStatus`, `$paidSum`, `$dataColumn`, `$userIDColumn`) 
+    $sql = "INSERT INTO `$table` (`$orderID`, `$name`, `$surname`, `$emailColumn`, `$phone`, `$paymentStatus`, `$paidSum`, `$data`, `$userID`) 
             VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
@@ -119,7 +119,7 @@ try {
     WebToPay::redirectToPayment([
         'projectid'     => PAYSERA_PROJECT_ID,
         'sign_password' => PAYSERA_PASSWORD,
-        'orderid'       => $orderIDValue,
+        'orderid'       => $orderID,
         'amount'        => COURSE_PRICE,
         'currency'      => 'EUR',
         'country'       => 'LT',
