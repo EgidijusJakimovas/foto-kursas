@@ -50,7 +50,7 @@ try {
     }
     
     // GET MAX ID FOR MAKING ORDER ID
-    $data2 = $pdo->prepare("SELECT MAX(id) as id FROM $table LIMIT 1;");
+    $data2 = $pdo->prepare("SELECT MAX(`id`) as `id` FROM `$table` LIMIT 1;");
     $data2->execute();
     $row2 = $data2->fetch();
     
@@ -65,7 +65,7 @@ try {
 
     // Fetch the user_id based on the email address
     $email = $_POST['email'];
-    $userQuery = $pdo->prepare("SELECT id FROM users WHERE email = :email LIMIT 1");
+    $userQuery = $pdo->prepare("SELECT `id` FROM `users` WHERE `email` = :email LIMIT 1");
     $userQuery->bindValue(':email', $email, PDO::PARAM_STR);
     $userQuery->execute();
 
@@ -79,7 +79,7 @@ try {
     $userID = $user['id'];
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $emailColumn, $phone, $paymentStatus, $paidSum, $data, $userID) 
+    $sql = "INSERT INTO `$table` (`$orderID`, `$name`, `$surname`, `$emailColumn`, `$phone`, `$paymentStatus`, `$paidSum`, `$data`, `$userID`) 
             VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
