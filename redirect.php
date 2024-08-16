@@ -16,16 +16,16 @@ try {
     $database   = DB_NAME;
 
     // Database table info
-    $table          = DB_TABLE_ORDERS;
-    $orderIDColumn  = DB_TABLE_ORDERS_COLUMN_ID;
-    $nameColumn     = DB_TABLE_ORDERS_COLUMN_NAME;
-    $surnameColumn  = DB_TABLE_ORDERS_COLUMN_SURNAME;
-    $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL;
-    $phoneColumn    = DB_TABLE_ORDERS_COLUMN_PHONE;
+    $table               = DB_TABLE_ORDERS;
+    $orderIDColumn       = DB_TABLE_ORDERS_COLUMN_ID;
+    $nameColumn          = DB_TABLE_ORDERS_COLUMN_NAME;
+    $surnameColumn       = DB_TABLE_ORDERS_COLUMN_SURNAME;
+    $emailColumn         = DB_TABLE_ORDERS_COLUMN_EMAIL;
+    $phoneColumn         = DB_TABLE_ORDERS_COLUMN_PHONE;
     $paymentStatusColumn = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
-    $paidSumColumn  = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $dataColumn     = DB_TABLE_ORDERS_COLUMN_DATA;
-    $userIDColumn   = DB_TABLE_ORDERS_COLUMN_USER_ID;
+    $paidSumColumn       = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
+    $dataColumn          = DB_TABLE_ORDERS_COLUMN_DATA;
+    $userIDColumn        = DB_TABLE_ORDERS_COLUMN_USER_ID;
 
     // Custom PDO options.
     $options = array(
