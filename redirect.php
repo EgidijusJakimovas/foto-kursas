@@ -18,17 +18,14 @@ try {
     // Database table info
     $table          = DB_TABLE_ORDERS;
     $orderID        = DB_TABLE_ORDERS_COLUMN_ID;
-    $name           = DB_TABLE_ORDERS_COLUMN_NAME;
-    $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
+    $nameColumn     = DB_TABLE_ORDERS_COLUMN_NAME;
+    $surnameColumn  = DB_TABLE_ORDERS_COLUMN_SURNAME;
     $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL; // Renamed to avoid conflict with variable $email
-    $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
+    $phoneColumn    = DB_TABLE_ORDERS_COLUMN_PHONE;
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $data           = DB_TABLE_ORDERS_COLUMN_DATA;
-    $userID         = DB_TABLE_ORDERS_COLUMN_USER_ID;
-
-    // Other info
-    $money          = COURSE_PRICE;
+    $dataColumn     = DB_TABLE_ORDERS_COLUMN_DATA;
+    $userIDColumn   = DB_TABLE_ORDERS_COLUMN_USER_ID;
 
     // Custom PDO options.
     $options = array(
@@ -50,13 +47,13 @@ try {
     }
     
     // GET MAX ID FOR MAKING ORDER ID
-    $data2 = $pdo->prepare("SELECT MAX(`id`) as `id` FROM `$table` LIMIT 1;");
+    $data2 = $pdo->prepare("SELECT MAX(`$orderID`) as `$orderID` FROM `$table` LIMIT 1;");
     $data2->execute();
     $row2 = $data2->fetch();
     
     // Make sure only 1 result is returned
     if ($data2->rowCount() == 1) {
-        $id_from_db = $row2['id'] + 1; // because always returns id - 1
+        $id_from_db = $row2[$orderID] + 1; // because always returns id - 1
         $order_id_from_db = '0000' . strval($id_from_db);
     }
 
@@ -79,28 +76,28 @@ try {
     $userID = $user['id'];
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO `$table` (`$orderID`, `$name`, `$surname`, `$emailColumn`, `$phone`, `$paymentStatus`, `$paidSum`, `$data`, `$userID`) 
+    $sql = "INSERT INTO `$table` (`$orderID`, `$nameColumn`, `$surnameColumn`, `$emailColumn`, `$phoneColumn`, `$paymentStatus`, `$paidSum`, `$dataColumn`, `$userIDColumn`) 
             VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
     
     // Bind user's entered values in form to our arguments
-    $orderID        = $order_id_from_db;
+    $orderIDValue   = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSum        = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
+    $paidSumValue   = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
 
     // Bind values to the statement
-    $statement->bindValue(':id',            $orderID);
+    $statement->bindValue(':id',            $orderIDValue);
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
     $statement->bindValue(':phone',         $phone);
-    $statement->bindValue(':payment_status',0);  // Initial value, since the payment is not done yet
-    $statement->bindValue(':paid_sum',      $paidSum);
+    $statement->bindValue(':payment_status',$paymentStatus);
+    $statement->bindValue(':paid_sum',      $paidSumValue);
     $statement->bindValue(':user_id',       $userID);
     
     // Adjust timestamp manually if necessary
@@ -122,7 +119,7 @@ try {
     WebToPay::redirectToPayment([
         'projectid'     => PAYSERA_PROJECT_ID,
         'sign_password' => PAYSERA_PASSWORD,
-        'orderid'       => $orderID,
+        'orderid'       => $orderIDValue,
         'amount'        => COURSE_PRICE,
         'currency'      => 'EUR',
         'country'       => 'LT',
