@@ -45,20 +45,6 @@ try {
             $pdo->exec("KILL {$connection['Id']}");
         }
     }
-    
-    // GET MAX ID FOR MAKING ORDER ID
-    $data2 = $pdo->prepare("SELECT MAX(`$orderIDColumn`) as `$orderIDColumn` FROM `$table` LIMIT 1;");
-    $data2->execute();
-    $row2 = $data2->fetch();
-    
-    // Make sure only 1 result is returned
-    if ($data2->rowCount() == 1) {
-        $id_from_db = $row2[$orderIDColumn] + 1;
-        $order_id_from_db = '0000' . strval($id_from_db);
-    }
-
-    // Close the statement used to get max ID
-    $data2 = null;
 
     // Fetch the user_id based on the email address
     $email = $_POST['email'];
@@ -76,8 +62,8 @@ try {
     $userID = $user['id'];
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO `$table` (`$orderIDColumn`, `$nameColumn`, `$surnameColumn`, `$emailColumn`, `$phoneColumn`, `$paymentStatusColumn`, `$paidSumColumn`, `$dataColumn`, `$userIDColumn`) 
-            VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
+    $sql = "INSERT INTO `$table` (`$nameColumn`, `$surnameColumn`, `$emailColumn`, `$phoneColumn`, `$paymentStatusColumn`, `$paidSumColumn`, `$dataColumn`, `$userIDColumn`) 
+            VALUES (:name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
@@ -90,7 +76,6 @@ try {
     $paidSum        = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
 
     // Bind values to the statement
-    $statement->bindValue(':id',            $order_id_from_db);
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
@@ -105,6 +90,9 @@ try {
 
     // Execute the statement and insert our values.
     $inserted = $statement->execute();
+    
+    // Get the last inserted ID
+    $order_id_from_db = $pdo->lastInsertId();
 
     // Close the statement and connection
     $statement = null;
