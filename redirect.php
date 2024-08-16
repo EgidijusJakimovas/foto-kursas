@@ -20,7 +20,7 @@ try {
     $orderID        = DB_TABLE_ORDERS_COLUMN_ID;
     $name           = DB_TABLE_ORDERS_COLUMN_NAME;
     $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
-    $email          = DB_TABLE_ORDERS_COLUMN_EMAIL;
+    $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL; // Renamed to avoid conflict with variable $email
     $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
     $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
     $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
@@ -63,8 +63,24 @@ try {
     // Close the statement used to get max ID
     $data2 = null;
 
+    // Fetch the user_id based on the email address
+    $email = $_POST['email'];
+    $userQuery = $pdo->prepare("SELECT id FROM users WHERE email = :email LIMIT 1");
+    $userQuery->bindValue(':email', $email, PDO::PARAM_STR);
+    $userQuery->execute();
+
+    $user = $userQuery->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        throw new Exception("User not found with email: " . $email);
+    }
+
+    // Get the user_id
+    $userID = $user['id'];
+
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO $table ($orderID, $name, $surname, $email, $phone, $paymentStatus, $paidSum, $data, $userID) VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
+    $sql = "INSERT INTO $table ($orderID, $name, $surname, $emailColumn, $phone, $paymentStatus, $paidSum, $data, $userID) 
+            VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
@@ -73,13 +89,11 @@ try {
     $orderID        = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
-    $email          = $_POST['email'];
     $phone          = $_POST['phone'];
     $paymentStatus  = 0; // because user has not paid yet, he will pay only on callback.php
-    $paidSum        = COURSE_PRICE / 100; // becouse paysera is counting in cents, but we have double in DB
-    $userID         = 1;
+    $paidSum        = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
 
-    // Against SQL injections
+    // Bind values to the statement
     $statement->bindValue(':id',            $orderID);
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
@@ -120,7 +134,6 @@ try {
     ]);
 } catch (Exception $exception) {
     echo "SQL exception on 'redirect.php' file. Enable error-reporting for more info.";
-    //TODO: HIDE IT IN PRODUCTION
     echo get_class($exception) . ':' . $exception->getMessage();
     error_reporting(1);
     ini_set('display_errors', 1);
