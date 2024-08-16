@@ -17,15 +17,15 @@ try {
 
     // Database table info
     $table          = DB_TABLE_ORDERS;
-    $orderID        = DB_TABLE_ORDERS_COLUMN_ID;
-    $name           = DB_TABLE_ORDERS_COLUMN_NAME;
-    $surname        = DB_TABLE_ORDERS_COLUMN_SURNAME;
-    $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL; // Renamed to avoid conflict with variable $email
-    $phone          = DB_TABLE_ORDERS_COLUMN_PHONE;
-    $paymentStatus  = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS;
-    $paidSum        = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM;
-    $data           = DB_TABLE_ORDERS_COLUMN_DATA;
-    $userID         = DB_TABLE_ORDERS_COLUMN_USER_ID;
+    $orderIDColumn  = DB_TABLE_ORDERS_COLUMN_ID; // Column name
+    $nameColumn     = DB_TABLE_ORDERS_COLUMN_NAME; // Column name
+    $surnameColumn  = DB_TABLE_ORDERS_COLUMN_SURNAME; // Column name
+    $emailColumn    = DB_TABLE_ORDERS_COLUMN_EMAIL; // Column name
+    $phoneColumn    = DB_TABLE_ORDERS_COLUMN_PHONE; // Column name
+    $paymentStatusColumn = DB_TABLE_ORDERS_COLUMN_PAYMENT_STATUS; // Column name
+    $paidSumColumn  = DB_TABLE_ORDERS_COLUMN_PAYMENT_SUM; // Column name
+    $dataColumn     = DB_TABLE_ORDERS_COLUMN_DATA; // Column name
+    $userIDColumn   = DB_TABLE_ORDERS_COLUMN_USER_ID; // Column name
 
     // Custom PDO options.
     $options = array(
@@ -47,13 +47,13 @@ try {
     }
     
     // GET MAX ID FOR MAKING ORDER ID
-    $data2 = $pdo->prepare("SELECT MAX(`$orderID`) as `$orderID` FROM `$table` LIMIT 1;");
+    $data2 = $pdo->prepare("SELECT MAX(`$orderIDColumn`) as `$orderIDColumn` FROM `$table` LIMIT 1;");
     $data2->execute();
     $row2 = $data2->fetch();
     
     // Make sure only 1 result is returned
     if ($data2->rowCount() == 1) {
-        $id_from_db = $row2[$orderID] + 1; // because always returns id - 1
+        $id_from_db = $row2[$orderIDColumn] + 1;
         $order_id_from_db = '0000' . strval($id_from_db);
     }
 
@@ -76,14 +76,13 @@ try {
     $userID = $user['id'];
 
     // Create our INSERT SQL query.
-    $sql = "INSERT INTO `$table` (`$orderID`, `$name`, `$surname`, `$emailColumn`, `$phone`, `$paymentStatus`, `$paidSum`, `$data`, `$userID`) 
+    $sql = "INSERT INTO `$table` (`$orderIDColumn`, `$nameColumn`, `$surnameColumn`, `$emailColumn`, `$phoneColumn`, `$paymentStatusColumn`, `$paidSumColumn`, `$dataColumn`, `$userIDColumn`) 
             VALUES (:id, :name, :surname, :email, :phone, :payment_status, :paid_sum, :data, :user_id)";
     
     // Prepare our statement.
     $statement = $pdo->prepare($sql);
     
     // Bind user's entered values in form to our arguments
-    $orderID   = $order_id_from_db;
     $name           = $_POST['name'];
     $surname        = $_POST['surname'];
     $phone          = $_POST['phone'];
@@ -91,7 +90,7 @@ try {
     $paidSum        = COURSE_PRICE / 100; // because Paysera counts in cents, but we have double in DB
 
     // Bind values to the statement
-    $statement->bindValue(':id',            $orderID);
+    $statement->bindValue(':id',            $order_id_from_db);
     $statement->bindValue(':name',          $name);
     $statement->bindValue(':surname',       $surname);
     $statement->bindValue(':email',         $email);
@@ -119,7 +118,7 @@ try {
     WebToPay::redirectToPayment([
         'projectid'     => PAYSERA_PROJECT_ID,
         'sign_password' => PAYSERA_PASSWORD,
-        'orderid'       => $orderID,
+        'orderid'       => $order_id_from_db,
         'amount'        => COURSE_PRICE,
         'currency'      => 'EUR',
         'country'       => 'LT',
